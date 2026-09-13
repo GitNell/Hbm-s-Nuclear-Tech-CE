@@ -105,7 +105,6 @@ public class JEIConfig implements IModPlugin {
     public static final String STORAGEDRUM = "hbm.storage_drum";
     public static final String SUPERCOMPUTER = "hbm.supercomputer";
     public static final String SPACE_ASSEMBLER = "hbm.spaceassembler";
-    public static final String TRANSMUTATION = "hbm.transmutation";
     public static final String WASTEDRUM = "hbm.waste_drum";
     static final String ORE_SLOPPER = "hbm.ore_slopper";
     static final String PA = "hbm.particle_accelerator";
@@ -273,7 +272,6 @@ public class JEIConfig implements IModPlugin {
 
         registry.addRecipes(assemblyMachineRecipeHandler.getRecipes(), ASSEMBLY_MACHINE);
         registry.addRecipes(JeiRecipes.getCyclotronRecipes(), CYCLOTRON);
-        registry.addRecipes(JeiRecipes.getTransmutationRecipes(), TRANSMUTATION);
         registry.addRecipes(PressRecipeHandler.getRecipes(), PRESS);
         registry.addRecipes(JeiRecipes.getAlloyRecipes(), ALLOY);
         registry.addRecipes(JeiRecipes.getGasCentrifugeRecipes(), GAS_CENT);
@@ -576,7 +574,6 @@ public class JEIConfig implements IModPlugin {
                 new GasCentrifugeRecipeHandler(help),
                 new BreederRecipeHandler(help),
                 new CyclotronRecipeHandler(help),
-                new TransmutationRecipeHandler(help),
                 new StorageDrumRecipeHandler(help),
                 new FluidRecipeHandler(help),
                 new SILEXRecipeHandler(help),
