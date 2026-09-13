@@ -1,17 +1,20 @@
 package com.hbm.render.tileentity;
 
+import com.hbm.blocks.ModBlocks;
 import com.hbm.interfaces.AutoRegister;
 import com.hbm.main.ResourceManager;
+import com.hbm.render.item.ItemRenderBase;
 import com.hbm.tileentity.machine.TileEntityLaunchpadLambda;
 import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.item.Item;
 import org.lwjgl.opengl.GL11;
 
 import java.nio.DoubleBuffer;
 
 @AutoRegister
-public class RenderLaunchpadLambda extends TileEntitySpecialRenderer<TileEntityLaunchpadLambda> {
+public class RenderLaunchpadLambda extends TileEntitySpecialRenderer<TileEntityLaunchpadLambda> implements IItemRendererProvider {
 
 	private static DoubleBuffer buf = null;
 
@@ -139,5 +142,39 @@ public class RenderLaunchpadLambda extends TileEntitySpecialRenderer<TileEntityL
 
 		GlStateManager.shadeModel(GL11.GL_FLAT);
 		GlStateManager.popMatrix();
+	}
+
+	@Override
+	public Item getItemForRenderer() {
+		return Item.getItemFromBlock(ModBlocks.launchpad_lambda);
+	}
+
+	@Override
+	public ItemRenderBase getRenderer(Item item) {
+		return new ItemRenderBase() {
+			public void renderInventory() {
+				GlStateManager.translate(0, -3.5, 0);
+				GlStateManager.scale(1.75, 1.75, 1.75);
+			}
+			public void renderCommon() {
+				GlStateManager.scale(0.25, 0.25, 0.25);
+				GlStateManager.shadeModel(GL11.GL_SMOOTH);
+				bindTexture(ResourceManager.launchpad_lambda_tex);
+				ResourceManager.launchpad_lambda.renderPart("Silo");
+				ResourceManager.launchpad_lambda.renderPart("DoorLeft");
+				ResourceManager.launchpad_lambda.renderPart("DoorRight");
+				GlStateManager.translate(0, 2, 0);
+				ResourceManager.launchpad_lambda.renderPart("Erector");
+				ResourceManager.launchpad_lambda.renderPart("Rotor");
+				ResourceManager.launchpad_lambda.renderPart("PivotLower1");
+				ResourceManager.launchpad_lambda.renderPart("ClampLower1");
+				ResourceManager.launchpad_lambda.renderPart("PivotLower2");
+				ResourceManager.launchpad_lambda.renderPart("ClampLower2");
+				ResourceManager.launchpad_lambda.renderPart("PivotUpper1");
+				ResourceManager.launchpad_lambda.renderPart("ClampUpper1");
+				ResourceManager.launchpad_lambda.renderPart("PivotUpper2");
+				ResourceManager.launchpad_lambda.renderPart("ClampUpper2");
+				GlStateManager.shadeModel(GL11.GL_FLAT);
+			}};
 	}
 }
