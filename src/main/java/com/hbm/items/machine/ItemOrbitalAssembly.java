@@ -13,7 +13,7 @@ import java.util.List;
 public class ItemOrbitalAssembly extends ItemEnumMulti<ItemOrbitalAssembly.EnumOrbitalAssembly> implements ISatChip {
 
 	public ItemOrbitalAssembly(String s) {
-		super(s, EnumOrbitalAssembly.VALUES, true, false);
+		super(s, EnumOrbitalAssembly.VALUES, true, s);
 	}
 
 	public enum EnumOrbitalAssembly {
